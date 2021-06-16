@@ -1,7 +1,6 @@
 import time
 
 from coordinates import *
-from datetime import datetime
 
 # importing libraries
 import signal
@@ -81,16 +80,6 @@ townsWithDistance = setDistances(dict)
 travelTown([], list(townsWithDistance.keys()))
 
 print('Exiting :', time.ctime())
-
-# dict = getTowns('tsp4.txt')
-# townsWithDistance = setDistances(dict)
-#
-# date_debut = datetime.now()
-# travelTown([], list(townsWithDistance.keys()))
-# date_fin = datetime.now()
-#
 print('Nombre de chemins calculés : {}'.format(NB_CHEMIN))
 print('Distance minimale trouvée : {}'.format(MINIMUM_DISTANCE))
 print('Chemin minimal : {}'.format(MINIMUM_CHEMIN))
-#
-# print(date_fin - date_debut)
