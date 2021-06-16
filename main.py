@@ -89,8 +89,8 @@ print('Exiting :', time.ctime())
 # travelTown([], list(townsWithDistance.keys()))
 # date_fin = datetime.now()
 #
-# print('Nombre de chemins calculés : {}'.format(NB_CHEMIN))
-# print('Distance minimale trouvée : {}'.format(MINIMUM_DISTANCE))
-# print('Chemin minimal : {}'.format(MINIMUM_CHEMIN))
+print('Nombre de chemins calculés : {}'.format(NB_CHEMIN))
+print('Distance minimale trouvée : {}'.format(MINIMUM_DISTANCE))
+print('Chemin minimal : {}'.format(MINIMUM_CHEMIN))
 #
 # print(date_fin - date_debut)
