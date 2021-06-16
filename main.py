@@ -1,5 +1,12 @@
+import time
+
 from coordinates import *
 from datetime import datetime
+
+# importing libraries
+import signal
+import resource
+import os
 
 global towns
 MINIMUM_DISTANCE = -1
@@ -22,7 +29,6 @@ def travelTown(previousTown, availableTown):
             travelTown(newPreviousTown, newAvailableTown)
     else:
         NB_CHEMIN += 1
-        print(NB_CHEMIN)
         distance = getFullDistance(previousTown)
 
         if MINIMUM_DISTANCE == -1 or MINIMUM_DISTANCE > distance:
@@ -40,16 +46,50 @@ def getFullDistance(towns):
 
     return distance
 
+def time_expired(n, stack):
 
-dict = getTowns('tsp4.txt')
+    print('EXPIRED :', time.ctime())
+
+    print('Nombre de chemins calculés : {}'.format(NB_CHEMIN))
+    print('Distance minimale trouvée : {}'.format(MINIMUM_DISTANCE))
+    print('Chemin minimal : {}'.format(MINIMUM_CHEMIN))
+
+    raise SystemExit(1)
+
+def set_cpu_runtime(seconds):
+    # Install the signal handler and set a resource limit
+    soft, hard = resource.getrlimit(resource.RLIMIT_CPU)
+    resource.setrlimit(resource.RLIMIT_CPU, (seconds, hard))
+    soft, hard = resource.getrlimit(resource.RLIMIT_CPU)
+    print('Soft limit changed to :', soft)
+    signal.signal(signal.SIGXCPU, time_expired)
+
+
+fileName = 'tsp4.txt'
+timestamp = 10
+
+set_cpu_runtime(timestamp)
+
+# Performing a CPU intensive task
+print('Starting:', time.ctime())
+
+dict = getTowns(fileName)
+print('On lance le test pour le fichier : {}'.format(fileName))
+print('On lance le test pour : {} secondes'.format(timestamp))
 townsWithDistance = setDistances(dict)
-
-date_debut = datetime.now()
 travelTown([], list(townsWithDistance.keys()))
-date_fin = datetime.now()
 
-print('Nombre de chemins calculés : {}'.format(NB_CHEMIN))
-print('Distance minimale trouvée : {}'.format(MINIMUM_DISTANCE))
-print('Chemin minimal : {}'.format(MINIMUM_CHEMIN))
+print('Exiting :', time.ctime())
 
-print(date_fin - date_debut)
+# dict = getTowns('tsp4.txt')
+# townsWithDistance = setDistances(dict)
+#
+# date_debut = datetime.now()
+# travelTown([], list(townsWithDistance.keys()))
+# date_fin = datetime.now()
+#
+# print('Nombre de chemins calculés : {}'.format(NB_CHEMIN))
+# print('Distance minimale trouvée : {}'.format(MINIMUM_DISTANCE))
+# print('Chemin minimal : {}'.format(MINIMUM_CHEMIN))
+#
+# print(date_fin - date_debut)
