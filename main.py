@@ -1,5 +1,7 @@
 from coordinates import *
+from datetime import datetime
 
+date_debut = datetime.now()
 global towns
 MINIMUM_DISTANCE = -1
 MINIMUM_CHEMIN = []
@@ -33,7 +35,7 @@ def getFullDistance(towns):
         previousTown = town
     return distance
 
-dict = getTowns('tsp1.txt')
+dict = getTowns('tsp10.txt')
 townsWithDistance = setDistances(dict)
 
 travelTown([], list(townsWithDistance.keys()))
@@ -41,3 +43,7 @@ travelTown([], list(townsWithDistance.keys()))
 print('Nombre de chemins calculés : {}'.format(NB_CHEMIN))
 print('Distance minimale trouvée : {}'.format(MINIMUM_DISTANCE))
 print('Chemin minimal : {}'.format(MINIMUM_CHEMIN))
+
+date_fin = datetime.now()
+
+print(date_fin-date_debut)
