@@ -12,12 +12,11 @@ def travelTown(previousTown, availableTown):
     global NB_CHEMIN
     if len(availableTown) > 0:
         for town in availableTown:
-            previousTown.append(town)
-            availableTown.remove(town)
-            travelTown(previousTown.copy(), availableTown.copy())
-            print(previousTown)
-            print(availableTown)
-
+            newPreviousTown = previousTown.copy()
+            newPreviousTown.append(town)
+            newAvailableTown = availableTown.copy()
+            newAvailableTown.remove(town)
+            travelTown(newPreviousTown, newAvailableTown)
             
     else:
         NB_CHEMIN += 1
