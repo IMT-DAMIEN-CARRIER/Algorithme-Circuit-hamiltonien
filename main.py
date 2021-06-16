@@ -65,8 +65,11 @@ def set_cpu_runtime(seconds):
     signal.signal(signal.SIGXCPU, time_expired)
 
 
-fileName = 'tsp4.txt'
+fileName = 'tsp1.txt'
 timestamp = 10
+
+print('On lance le test pour le fichier : {}'.format(fileName))
+print('On lance le test pour : {} secondes'.format(timestamp))
 
 set_cpu_runtime(timestamp)
 
@@ -74,8 +77,6 @@ set_cpu_runtime(timestamp)
 print('Starting:', time.ctime())
 
 dict = getTowns(fileName)
-print('On lance le test pour le fichier : {}'.format(fileName))
-print('On lance le test pour : {} secondes'.format(timestamp))
 townsWithDistance = setDistances(dict)
 travelTown([], list(townsWithDistance.keys()))
 
