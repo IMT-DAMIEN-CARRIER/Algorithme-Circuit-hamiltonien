@@ -6,7 +6,7 @@ from datetime import datetime
 # importing libraries
 import signal
 import resource
-import os
+import sys
 
 global towns
 MINIMUM_DISTANCE = -1
@@ -65,8 +65,8 @@ def set_cpu_runtime(seconds):
     signal.signal(signal.SIGXCPU, time_expired)
 
 
-fileName = 'tsp1.txt'
-timestamp = 10
+fileName = sys.argv[1]
+timestamp = int (sys.argv[2])
 
 print('On lance le test pour le fichier : {}'.format(fileName))
 print('On lance le test pour : {} secondes'.format(timestamp))
