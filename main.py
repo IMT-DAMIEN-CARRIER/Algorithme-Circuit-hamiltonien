@@ -1,3 +1,5 @@
+# Damien Carrier - Arthur Duca - Clément Savinaud
+
 import time
 
 from coordinates import *

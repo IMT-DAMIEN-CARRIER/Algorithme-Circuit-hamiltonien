@@ -1,3 +1,5 @@
+# Damien Carrier - Arthur Duca - Clément Savinaud
+
 import string
 import math
 
