@@ -65,6 +65,7 @@ def travelTown(previousTown, availableTown):
             travelTown(newPreviousTown, newAvailableTown)
     else:
         NB_CHEMIN += 1
+        previousTown.append(previousTown[0])
         distance = getFullDistance(previousTown)
 
         if MINIMUM_DISTANCE == -1 or MINIMUM_DISTANCE > distance:
