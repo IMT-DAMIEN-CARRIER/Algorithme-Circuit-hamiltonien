@@ -8,7 +8,7 @@ Mise en place d'un algorithme permettant de construire un circuit hamiltonien.
 
 ## Utilisation du script
 ```bash
-python main.py [nom du fichier] [temps en secondes]
+python main.py [nom du fichier] [temps d'éxécution max en secondes]
 
 # Exemple : 
 python main.py tsp1.txt 10
