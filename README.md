@@ -11,7 +11,7 @@ Mise en place d'un algorithme permettant de construire un circuit hamiltonien.
 python main.py [nom du fichier] [temps d'éxécution max en secondes]
 ```
 
-```bash
+```shell
 # Exemple : 
 python main.py tsp1.txt 10
 ```
