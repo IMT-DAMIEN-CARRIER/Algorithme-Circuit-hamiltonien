@@ -16,7 +16,9 @@ MINIMUM_CHEMIN = []
 NB_CHEMIN = 0
 NB_NODE = 0
 
-
+# Recursive function which calculate minimal circuit
+# previousTown = current circuit
+# availableTown = not actually visited Town
 def travelTown(previousTown, availableTown):
     global MINIMUM_CHEMIN
     global MINIMUM_DISTANCE
@@ -26,20 +28,29 @@ def travelTown(previousTown, availableTown):
     NB_NODE += 1
 
     if len(availableTown) > 0:
+        # For each not visited Town
         for town in availableTown:
+            # If actual distance + MAX distance to go back to firt Town
+            # 
             if MINIMUM_DISTANCE != -1 \
                     and len(previousTown) > 0 \
                     and getFullDistance(previousTown) + getMaxDistanceToStartFromCurrent(previousTown, availableTown) > MINIMUM_DISTANCE :
                 return
 
             newPreviousTown = previousTown.copy()
+            # Add a new Town to actual circuit
             newPreviousTown.append(town)
             newAvailableTown = availableTown.copy()
+            # Remove this Town from not visited Towns
             newAvailableTown.remove(town)
+            # Recursion
             travelTown(newPreviousTown, newAvailableTown)
     else:
+        # If there is no more town to visit
         NB_CHEMIN += 1
+        # Return to home
         previousTown.append(previousTown[0])
+        # Calcul circuit distance
         distance = getFullDistance(previousTown)
 
         if MINIMUM_DISTANCE == -1 or MINIMUM_DISTANCE > distance:
@@ -47,6 +58,7 @@ def travelTown(previousTown, availableTown):
             MINIMUM_CHEMIN = previousTown.copy()
 
 
+# Calculate full distance 
 def getFullDistance(towns):
     distance = 0
     previousTown = towns[0]
@@ -57,7 +69,7 @@ def getFullDistance(towns):
 
     return distance
 
-
+# Calculate maximal Distance to go back to home
 def getMaxDistanceToStartFromCurrent(towns, availableTowns):
     maxDistance = 0
 
