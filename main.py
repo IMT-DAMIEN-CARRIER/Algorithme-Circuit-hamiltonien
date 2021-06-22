@@ -23,8 +23,11 @@ def travelTown(previousTown, availableTown):
 
     if len(availableTown) > 0:
         for town in availableTown:
-            if MINIMUM_DISTANCE != -1 and len(previousTown) > 0 and getFullDistance(previousTown) + getMaxPlusReturnTown(previousTown) > MINIMUM_DISTANCE:
+            if MINIMUM_DISTANCE != -1 \
+                    and len(previousTown) > 0 \
+                    and getFullDistance(previousTown) + getMaxDistanceToStartFromCurrent(previousTown, availableTown) > MINIMUM_DISTANCE :
                 return
+
             newPreviousTown = previousTown.copy()
             newPreviousTown.append(town)
             newAvailableTown = availableTown.copy()
@@ -50,13 +53,19 @@ def getFullDistance(towns):
 
     return distance
 
-def getMaxPlusReturnTown(towns):
-    distance = 0
-    maxDistanceTown = townsWithDistance[towns[-1]]['MAX']
-    distance += townsWithDistance[towns[-1]][maxDistanceTown]
-    if maxDistanceTown != towns[0]:
-        distance += townsWithDistance[maxDistanceTown][towns[0]]
-    return distance
+
+def getMaxDistanceToStartFromCurrent(towns, availableTowns):
+    maxDistance = 0
+
+    for town in availableTowns:
+        distance = townsWithDistance[towns[-1]][town]
+        distance += townsWithDistance[towns[0]][town]
+
+        if maxDistance == 0 or maxDistance < distance:
+            maxDistance = distance
+
+    return maxDistance
+
 
 def time_expired(n, stack):
 
@@ -67,6 +76,7 @@ def time_expired(n, stack):
     print('Chemin minimal : {}'.format(MINIMUM_CHEMIN))
 
     raise SystemExit(1)
+
 
 def set_cpu_runtime(seconds):
     # Install the signal handler and set a resource limit
@@ -90,7 +100,9 @@ print('Starting:', time.ctime())
 
 dict = getTowns(fileName)
 townsWithDistance = setDistances(dict)
-travelTown([], list(townsWithDistance.keys()))
+availableTowns = list(townsWithDistance.keys())
+previousTowns = list(availableTowns[0])
+travelTown(previousTowns, availableTowns[1:])
 
 print('Exiting :', time.ctime())
 print('Nombre de chemins calculés : {}'.format(NB_CHEMIN))
