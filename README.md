@@ -40,6 +40,8 @@ python main.py tsp1.txt 10
 
 * main.py
 ```python
+# Damien Carrier - Arthur Duca - Clément Savinaud
+
 import time
 
 from coordinates import *
@@ -63,6 +65,8 @@ def travelTown(previousTown, availableTown):
 
     if len(availableTown) > 0:
         for town in availableTown:
+            if MINIMUM_DISTANCE != -1 and len(previousTown) > 0 and getFullDistance(previousTown) + getMaxPlusReturnTown(previousTown) > MINIMUM_DISTANCE:
+                return
             newPreviousTown = previousTown.copy()
             newPreviousTown.append(town)
             newAvailableTown = availableTown.copy()
@@ -86,6 +90,14 @@ def getFullDistance(towns):
         distance += townsWithDistance[previousTown][town]
         previousTown = town
 
+    return distance
+
+def getMaxPlusReturnTown(towns):
+    distance = 0
+    maxDistanceTown = townsWithDistance[towns[-1]]['MAX']
+    distance += townsWithDistance[towns[-1]][maxDistanceTown]
+    if maxDistanceTown != towns[0]:
+        distance += townsWithDistance[maxDistanceTown][towns[0]]
     return distance
 
 def time_expired(n, stack):
@@ -130,6 +142,8 @@ print('Chemin minimal : {}'.format(MINIMUM_CHEMIN))
 
 * coordinates.py
 ```python
+# Damien Carrier - Arthur Duca - Clément Savinaud
+
 import string
 import math
 
@@ -163,6 +177,10 @@ def setDistances(dictTown):
             if lettre != lettreCible and lettreCible not in dictTownDist[lettre]:
                 distance = getDistance(coord,coordCible)
                 dictTownDist[lettre][lettreCible] = distance
+                if "MAX" not in dictTownDist[lettre]:
+                    dictTownDist[lettre]["MAX"] = lettreCible
+                elif dictTownDist[lettre][dictTownDist[lettre]["MAX"]] < distance:
+                    dictTownDist[lettre]["MAX"] = lettreCible
                 if lettreCible not in dictTownDist:
                     dictTownDist[lettreCible] = {}
                     dictTownDist[lettreCible][lettre] = distance
