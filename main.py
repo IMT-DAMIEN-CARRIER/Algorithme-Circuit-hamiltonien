@@ -14,12 +14,16 @@ MINIMUM_DISTANCE = -1
 MINIMUM_CHEMIN = []
 
 NB_CHEMIN = 0
+NB_NODE = 0
 
 
 def travelTown(previousTown, availableTown):
     global MINIMUM_CHEMIN
     global MINIMUM_DISTANCE
     global NB_CHEMIN
+    global NB_NODE
+
+    NB_NODE += 1
 
     if len(availableTown) > 0:
         for town in availableTown:
@@ -72,6 +76,7 @@ def time_expired(n, stack):
     print('EXPIRED :', time.ctime())
 
     print('Nombre de chemins calculés : {}'.format(NB_CHEMIN))
+    print('Nombre de nodes : {}'.format(NB_NODE))
     print('Distance minimale trouvée : {}'.format(MINIMUM_DISTANCE))
     print('Chemin minimal : {}'.format(MINIMUM_CHEMIN))
 
@@ -106,5 +111,6 @@ travelTown(previousTowns, availableTowns[1:])
 
 print('Exiting :', time.ctime())
 print('Nombre de chemins calculés : {}'.format(NB_CHEMIN))
+print('Nombre de nodes : {}'.format(NB_NODE))
 print('Distance minimale trouvée : {}'.format(MINIMUM_DISTANCE))
 print('Chemin minimal : {}'.format(MINIMUM_CHEMIN))
