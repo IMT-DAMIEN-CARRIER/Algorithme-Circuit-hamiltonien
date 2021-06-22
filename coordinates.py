@@ -3,9 +3,6 @@
 import string
 import math
 
-global lettres
-lettres = list(string.ascii_uppercase)
-
 def getTowns(fileName):
     dict = {}
     filepath = 'fichiers_test/' + fileName
@@ -16,7 +13,7 @@ def getTowns(fileName):
             row = line.split()
             x = row[0]
             y = row[1]
-            dict[lettres[i]] = {'x':float(x),'y':float(y)}
+            dict[str(i)] = {'x': float(x), 'y': float(y)}
             i += 1
 
     return dict
@@ -38,9 +35,6 @@ def setDistances(dictTown):
             if lettre != lettreCible and lettreCible not in dictTownDist[lettre]:
                 distance = getDistance(coord, coordCible)
                 dictTownDist[lettre][lettreCible] = distance
-
-                # if "MAX" not in dictTownDist[lettre] or dictTownDist[lettre][dictTownDist[lettre]["MAX"]] < distance:
-                #     dictTownDist[lettre]["MAX"] = lettreCible
 
                 if lettreCible not in dictTownDist:
                     dictTownDist[lettreCible] = {}
