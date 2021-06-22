@@ -1,7 +1,12 @@
 # Algorithme - Circuit hamiltonien
-#### Damien Carrier - Arthur Duca - Clément Savinaud
+
+
+
+#### Equipe : Damien Carrier - Arthur Duca - Clément Savinaud
 
 ---
+
+
 
 Cours de complexité algorithmique.
 Mise en place d'un algorithme permettant de construire un circuit hamiltonien.
@@ -23,13 +28,13 @@ python main.py tsp1.txt 10
 | tsp1.txt  | 9         | 10   | 4156,62  | 60   | 4156,62  | 600  | 4156,62  |
 | tsp2.txt  | 10        | 10   | 5197,59  | 60   | 5197,59  | 600  | 5197,59  |
 | tsp3.txt  | 6         | 10   | 3195.98  | 60   | 3195.98  | 600  | 3195.98  |
-| tsp4.txt  | 16        | 10   | 9111.16  | 60   | 8547.71  | 600  | 7956.40  |
+| tsp4.txt  | 16        | 10   | 9111.16  | 60   | 8547.71  | 600  | 5715.23  |
 | tsp5.txt  | 12        | 10   | 5528.11  | 60   | 5528.11  | 600  | 5528.11  |
 | tsp6.txt  | 9         | 10   | 4363.38  | 60   | 4363.38  | 600  | 4363.38  |
 | tsp7.txt  | 6         | 10   | 4468.31  | 60   | 4468.31  | 600  | 4468.31  |
 | tsp8.txt  | 11        | 10   | 5053.57  | 60   | 5053.57  | 600  | 5053.57  |
 | tsp9.txt  | 8         | 10   | 4597.87  | 60   | 4597.87  | 600  | 4597.87  |
-| tsp10.txt | 20        | 10   | 5341.59  | 60   | 5314.23  | 600  | 5301.54  |
+| tsp10.txt | 20        | 10   | 5341.59  | 60   | 5314.23  | 600  | 4833.70  |
 
 ## Algorithme :
 

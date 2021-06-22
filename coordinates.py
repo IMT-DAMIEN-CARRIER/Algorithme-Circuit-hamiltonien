@@ -33,6 +33,10 @@ def setDistances(dictTown):
             if lettre != lettreCible and lettreCible not in dictTownDist[lettre]:
                 distance = getDistance(coord,coordCible)
                 dictTownDist[lettre][lettreCible] = distance
+                if "MAX" not in dictTownDist[lettre]:
+                    dictTownDist[lettre]["MAX"] = lettreCible
+                elif dictTownDist[lettre][dictTownDist[lettre]["MAX"]] < distance:
+                    dictTownDist[lettre]["MAX"] = lettreCible
                 if lettreCible not in dictTownDist:
                     dictTownDist[lettreCible] = {}
                     dictTownDist[lettreCible][lettre] = distance
